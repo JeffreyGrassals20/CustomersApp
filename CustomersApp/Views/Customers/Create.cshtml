@@ -44,9 +44,6 @@
             <input asp-for="Phone" placeholder="Phone Number..">
             @Html.ValidationMessageFor(d => d.Phone, "", new { @class = "text-danger" }) <br />
 
-            <label for="Main-Address"> Main Address</label>
-            <textarea id="Address" name="Address" placeholder="Main Address" style="height:200px"></textarea>
-
             <input type="submit" value="Submit">
 
         </form>
@@ -57,6 +54,7 @@
 
 @section Scripts{
 
-    @{ <partial name="_ValidationScriptsPartial.cshtml"/>}
+    @{ <partial name="_ValidationScriptsPartial.cshtml"/>
+    }
  }
 

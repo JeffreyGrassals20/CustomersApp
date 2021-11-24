@@ -1,5 +1,48 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model Customers
 @{
+    ViewData["Title"] = "Customers list";
 }
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Customers List</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block" asp-action="Create" asp-controller="Customers"> Create New</a>
+        </div>
+    </div>
+
+   
+    <div class="row">
+      
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(d => d.Name)</td>
+                        <td>@Html.DisplayNameFor(d => d.LastName)</td>
+                        <td>@Html.DisplayNameFor(d => d.DocumentID)</td>
+                        <td>@Html.DisplayNameFor(d => d.Email)</td>
+                        <td>@Html.DisplayNameFor(d => d.Phone)</td>
+                        <td>Actions</td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                  
+                    <tr>
+                        <td>@Html.DisplayNameFor(d => d.Name)</td>
+                        <td>@Html.DisplayNameFor(d => d.LastName)</td>
+                        <td>@Html.DisplayNameFor(d => d.DocumentID)</td>
+                        <td>@Html.DisplayNameFor(d => d.Email)</td>
+                        <td>@Html.DisplayNameFor(d => d.Phone)</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+            
+        </div>
+</div>

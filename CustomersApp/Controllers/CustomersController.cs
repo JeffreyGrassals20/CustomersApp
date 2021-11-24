@@ -19,6 +19,30 @@ namespace CustomersApp.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            try
+            {
+                string query = "SELECT * FROM Customers";
+
+                var cmd = new NpgsqlCommand(query, db.DBConnection());
+
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+                List<Customers> CustomersList = new List<Customers>();
+
+                while (reader.Read())
+                {
+                    
+                    Console.WriteLine(reader.GetValue(2));
+                }
+
+
+                db.DBConnection().Close();
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Create Error" + e);
+            }
+
             return View();
         }
 
@@ -62,6 +86,49 @@ namespace CustomersApp.Controllers
             {
                 Console.WriteLine("State not Valid");
                 return RedirectToAction("Create");
+
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        public IActionResult Delete()
+        {
+            return View();
+
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(Customers customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                try
+                {
+                    string query = "DELETE FROM CUSTOMERS WHERE DocumentID = @p1";
+
+                    var cmd = new NpgsqlCommand(query, db.DBConnection());
+
+                    cmd.Parameters.AddWithValue("p1", customer.DocumentID);
+       
+                    Console.WriteLine("Deleted");
+
+                    cmd.ExecuteNonQuery();
+
+                    db.DBConnection().Close();
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Delete Error " + e);
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Delete State not Valid");
+                return RedirectToAction("Index");
 
             }
             return RedirectToAction("Index");
