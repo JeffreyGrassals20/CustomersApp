@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Customers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/CreateCustomers.css" />
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Create Customer</h1>
+        </div>
+    </header>
+
+    <div class="formContainer">
+        <form asp-controller="Customers" asp-action="Index">
+
+            <label asp-for="Name">First Name</label>
+            <input asp-for="Name" placeholder="Name..">
+
+            <label asp-for="LastName">Last Name</label>
+            <input asp-for="LastName" placeholder="Last name..">
+
+            <label asp-for="DocumentID">Document ID</label>
+            <input asp-for="DocumentID" placeholder="ID Number..">
+
+            <label asp-for="Email">E-Mail</label>
+            <input asp-for="Email" placeholder="E-Mail..">
+
+            <label for="Main-Address"> Main Address</label>
+            <textarea id="Address" name="Address" placeholder="Main Address" style="height:200px"></textarea>
+
+            <input type="submit" value="Submit">
+
+        </form>
+    </div>
+
+</body>
+</html>

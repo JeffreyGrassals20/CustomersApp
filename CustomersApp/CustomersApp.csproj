@@ -13,8 +13,12 @@
   <ItemGroup>
     <None Remove="Npgsql" />
     <None Remove="Views\Customers\" />
+    <None Remove="DBConnection\" />
+    <None Remove="Views\Address\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Customers\" />
+    <Folder Include="DBConnection\" />
+    <Folder Include="Views\Address\" />
   </ItemGroup>
 </Project>

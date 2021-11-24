@@ -22,19 +22,27 @@
     </header>
 
     <div class="formContainer">
-        <form asp-controller="Customers" asp-action="Index">
+        <form asp-controller="Customers" asp-action="Create">
 
             <label asp-for="Name">First Name</label>
             <input asp-for="Name" placeholder="Name..">
+            @Html.ValidationMessageFor(d => d.Name, "", new { @class = "text-danger" }) <br />
 
             <label asp-for="LastName">Last Name</label>
             <input asp-for="LastName" placeholder="Last name..">
+            @Html.ValidationMessageFor(d => d.LastName, "", new { @class = "text-danger" }) <br />
 
             <label asp-for="DocumentID">Document ID</label>
             <input asp-for="DocumentID" placeholder="ID Number..">
+            @Html.ValidationMessageFor(d => d.DocumentID, "", new { @class = "text-danger" }) <br />
 
             <label asp-for="Email">E-Mail</label>
             <input asp-for="Email" placeholder="E-Mail..">
+            @Html.ValidationMessageFor(d => d.Email, "", new { @class = "text-danger" }) <br />
+
+            <label asp-for="Phone">Phone Number</label>
+            <input asp-for="Phone" placeholder="Phone Number..">
+            @Html.ValidationMessageFor(d => d.Phone, "", new { @class = "text-danger" }) <br />
 
             <label for="Main-Address"> Main Address</label>
             <textarea id="Address" name="Address" placeholder="Main Address" style="height:200px"></textarea>
@@ -46,3 +54,9 @@
 
 </body>
 </html>
+
+@section Scripts{
+
+    @{ <partial name="_ValidationScriptsPartial.cshtml"/>}
+ }
+

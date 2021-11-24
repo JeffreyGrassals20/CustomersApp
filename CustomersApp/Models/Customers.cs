@@ -7,6 +7,11 @@ namespace CustomersApp.Models
     {
         public Customers()
         {
+            this.Name = Name;
+            this.LastName = LastName;
+            this.DocumentID = DocumentID;
+            this.Email = Email;
+            this.Phone = Phone;
         }
 
         [Required (ErrorMessage ="Customer Name Is Required")]
@@ -19,7 +24,10 @@ namespace CustomersApp.Models
         [StringLength(11)]
         public string DocumentID { get; set; }
 
+        [Required]
         public string Email { get; set; }
+
+        [Required]
         public string Phone { get; set; }
     }
 }
