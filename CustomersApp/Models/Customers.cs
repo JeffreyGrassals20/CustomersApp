@@ -7,12 +7,15 @@ namespace CustomersApp.Models
     {
         public Customers()
         {
+            this.CustomerID = CustomerID;
             this.Name = Name;
             this.LastName = LastName;
             this.DocumentID = DocumentID;
             this.Email = Email;
             this.Phone = Phone;
         }
+
+        public int CustomerID { get; set; }
 
         [Required (ErrorMessage ="Customer Name Is Required")]
         public string Name { get; set; }

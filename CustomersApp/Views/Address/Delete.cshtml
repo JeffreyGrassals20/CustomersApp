@@ -3,3 +3,39 @@
 *@
 @{
 }
+@model Address
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/CreateCustomers.css" />
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Delete Address</h1>
+        </div>
+    </header>
+
+    <div class="formContainer" id="DeleteAddress">
+        <form asp-controller="Address" asp-action="Delete">
+
+            <label for="Address ID">Document ID</label>
+            <input for="AddressID" placeholder="Document ID..">
+            @*@Html.ValidationMessageFor(d => d.AddressID, "", new { @class = "text-danger" }) <br />*@
+
+            <input type="submit" value="Submit">
+
+        </form>
+    </div>
+
+</body>
+</html>
+
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }}

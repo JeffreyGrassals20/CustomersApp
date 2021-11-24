@@ -1,5 +1,47 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model Address
 @{
+    ViewData["Title"] = "Create Address";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/CreateCustomers.css" />
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Create Address</h1>
+        </div>
+    </header>
+
+    <div class="formContainer">
+        <form asp-controller="Address" asp-action="Create">
+
+            <label asp-for="CustomerID">Customer ID</label>
+            <input asp-for="CustomerID" placeholder="Customer ID..">
+            @Html.ValidationMessageFor(d => d.CustomerID, "", new { @class = "text-danger" }) <br />
+
+            <label asp-for="Addresses">Address</label>
+            <textarea asp-for="Addresses" placeholder="Address" style="height:200px"></textarea>
+            @Html.ValidationMessageFor(d => d.Addresses, "", new { @class = "text-danger" }) <br />
+
+            <input type="submit" value="Submit">
+
+        </form>
+    </div>
+
+</body>
+</html>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
 }

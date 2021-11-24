@@ -1,5 +1,69 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
+@model Customers
 @{
+    ViewData["Title"] = "Edit ";
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/CreateCustomers.css" />
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Edit Customer</h1>
+        </div>
+    </header>
+
+
+    @{
+        
+        foreach (var i in (List<Customers>)ViewData["Customers"])
+        {
+            <div class="formContainer">
+                <form asp-controller="Customers" asp-action="Update">
+
+                    <input type="hidden" asp-for="CustomerID"/>
+
+                    <label asp-for="Name">First Name</label>
+                    <input asp-for="Name" value= "@i.Name" >
+                    @Html.ValidationMessageFor(d => d.Name, "", new { @class = "text-danger" }) <br />
+
+                    <label asp-for="LastName">Last Name</label>
+                    <input asp-for="LastName" value="@i.LastName">
+                    @Html.ValidationMessageFor(d => d.LastName, "", new { @class = "text-danger" }) <br />
+
+                    <label asp-for="DocumentID">Document ID</label>
+                    <input asp-for="DocumentID" value="@i.DocumentID">
+                    @Html.ValidationMessageFor(d => d.DocumentID, "", new { @class = "text-danger" }) <br />
+
+                    <label asp-for="Email">E-Mail</label>
+                    <input asp-for="Email" value="@i.Email">
+                    @Html.ValidationMessageFor(d => d.Email, "", new { @class = "text-danger" }) <br />
+
+                    <label asp-for="Phone">Phone Number</label>
+                    <input asp-for="Phone" value="@i.Phone">
+                    @Html.ValidationMessageFor(d => d.Phone, "", new { @class = "text-danger" }) <br />
+
+                    <input type="submit" asp-route-id="@i.CustomerID" value="Submit">
+
+                </form>
+            </div>
+            }
+        }
+</body>
+</html>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+}
+

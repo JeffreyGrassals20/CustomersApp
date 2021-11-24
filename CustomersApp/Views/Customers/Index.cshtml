@@ -22,24 +22,36 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                        <td>@Html.DisplayNameFor(d => d.CustomerID)</td>
                         <td>@Html.DisplayNameFor(d => d.Name)</td>
                         <td>@Html.DisplayNameFor(d => d.LastName)</td>
                         <td>@Html.DisplayNameFor(d => d.DocumentID)</td>
                         <td>@Html.DisplayNameFor(d => d.Email)</td>
                         <td>@Html.DisplayNameFor(d => d.Phone)</td>
-                        <td>Actions</td>
 
                     </tr>
                 </thead>
                 <tbody>
-                  
-                    <tr>
-                        <td>@Html.DisplayNameFor(d => d.Name)</td>
-                        <td>@Html.DisplayNameFor(d => d.LastName)</td>
-                        <td>@Html.DisplayNameFor(d => d.DocumentID)</td>
-                        <td>@Html.DisplayNameFor(d => d.Email)</td>
-                        <td>@Html.DisplayNameFor(d => d.Phone)</td>
-                    </tr>
+                        @{
+                            foreach (var i in (List<Customers>)ViewData["Customers"])
+                            {
+                               <tr>
+                                    <td>@i.CustomerID</td>
+                                    <td>@i.Name</td>
+                                    <td>@i.LastName</td>
+                                    <td>@i.DocumentID</td>
+                                    <td>@i.Email</td>
+                                    <td>@i.Phone</td>
+                                    <td>
+                                        <a asp-controller="Customers" asp-action="Update"  asp-route-id="@i.CustomerID" class="btn btn-warning">Edit</a>
+                                        <a asp-controller="Customers" asp-action="Delete" asp-route-id="@i.CustomerID" class="btn btn-danger">Delete</a>
+
+                                    </td>
+                               </tr>
+
+                            }
+
+                        }
                     
                 </tbody>
             </table>
