@@ -32,5 +32,8 @@ namespace CustomersApp.Models
 
         [Required]
         public string Phone { get; set; }
+
+        [Required(ErrorMessage = "Customer Main Address is Required")]
+        public string MainAddress { get; set; }
     }
 }

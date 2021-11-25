@@ -5,6 +5,7 @@
 @model Customers
 @{
     ViewData["Title"] = "Customers Home";
+
 }
 
 <!DOCTYPE html>
@@ -43,6 +44,11 @@
             <label asp-for="Phone">Phone Number</label>
             <input asp-for="Phone" placeholder="Phone Number..">
             @Html.ValidationMessageFor(d => d.Phone, "", new { @class = "text-danger" }) <br />
+
+            <label >Main Address</label>
+            <textarea asp-for="MainAddress" placeholder="Address" style="height:200px"></textarea>
+            @Html.ValidationMessageFor(d => d.MainAddress, "", new { @class = "text-danger" }) <br />
+
 
             <input type="submit" value="Submit">
 

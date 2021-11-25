@@ -81,18 +81,25 @@ namespace CustomersApp.Controllers
             {
                 try
                 {
-                    string query = "INSERT INTO customers (name,lastname,documentid,email,phone) VALUES (@p1,@p2,@p3,@p4,@p5)";
+                    /*string query = $"INSERT INTO customers (name," +
+                                                            $"lastname," +
+                                                            $"documentid," +
+                                                            $"email,phone) " +
+                                                            $"VALUES ({customer.Name}," +
+                                                                     $"{customer.LastName}," +
+                                                                     $"{customer.DocumentID}," +
+                                                                     $"{customer.Email}," +
+                                                                     $"{customer.Phone})";*/
+
+                    string query = $"CALL InsertCustomers_And_MainAddress('{customer.Name}','{customer.LastName}'," +
+                                                                            $"'{customer.DocumentID}'," +
+                                                                            $"'{customer.Email}'," +
+                                                                            $"'{customer.Phone}'," +
+                                                                            $"'{customer.MainAddress}')";
 
                     var cmd = new NpgsqlCommand(query, db.DBConnection());
 
-                    cmd.Parameters.AddWithValue("p1", customer.Name);
-                    cmd.Parameters.AddWithValue("p2", customer.LastName) ;
-                    cmd.Parameters.AddWithValue("p3", customer.DocumentID);
-                    cmd.Parameters.AddWithValue("p4", customer.Email);
-                    cmd.Parameters.AddWithValue("p5", customer.Phone);
-
-                    
-
+                  
                     Console.WriteLine("Added");
 
                     cmd.ExecuteNonQuery();
@@ -114,33 +121,19 @@ namespace CustomersApp.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public IActionResult Delete()
+        //GET
+        public IActionResult Delete(int id)
         {
-
-            return View();
-
-        }
-
-
-        [HttpPost]
-        public IActionResult Delete(Customers customer)
-        {
-            if (!ModelState.IsValid)
-            {
+            
                 try
                 {
-                    string query = "DELETE FROM CUSTOMERS WHERE DocumentID = @p1";
+                    string query1 = $"CALL DeleteCustomers_And_Address({id})";
+                    var cmd1 = new NpgsqlCommand(query1, db.DBConnection());
 
-                    var cmd = new NpgsqlCommand(query, db.DBConnection());
 
-                    cmd.Parameters.AddWithValue("p1", customer.DocumentID);
-       
-                    Console.WriteLine("Deleted");
-
-                    cmd.ExecuteNonQuery();
-
-                    db.DBConnection().Close();
+                    cmd1.ExecuteNonQuery();
+                    
+                db.DBConnection().Close();
 
                 }
                 catch (Exception e)
@@ -148,13 +141,16 @@ namespace CustomersApp.Controllers
                     Console.WriteLine("Delete Error " + e);
                 }
 
-            }
-            else
-            {
-                Console.WriteLine("Delete State not Valid");
+                Console.WriteLine("Customer Deleted");
                 return RedirectToAction("Index");
 
-            }
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(Customers customer)
+        {
+            
             return RedirectToAction("Index");
         }
 
