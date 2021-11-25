@@ -1,8 +1,35 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/CreateCustomers.css" />
+</head>
+<body>
+    <header>
+        <br />
+        <div>
+            <center>
+                <h1 class="display-4">Welcome to Your Managemente App</h1> <br /><br />
+            </center>
+        </div>
+    </header>
+    <center>
+    <div class="jumbotron">
+        <h1 class="display-4">Customers Management</h1>
+        <p class="lead">This is a simple App to manage your Customers Data.</p>
+        <hr class="my-4">
+        <p>Click Below to perform an action</p>
+        <p class="lead">
+            <a class="btn btn-info btn-lg" asp-controller="Customers" asp-action="Index" role="button">Customers</a>
+            <a class="btn btn-info btn-lg" asp-controller="Address" asp-action="Index" role="button">Addresses</a>
+        </p>
+    </div>
+        </center>
+</body>
+</html>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome Customer</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+

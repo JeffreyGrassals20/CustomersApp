@@ -123,5 +123,77 @@ namespace CustomersApp.Controllers
             return View();
 
         }
+
+
+        public IActionResult Update(int id) {
+
+            if (id == 0)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                string query = $"Select IDAddress,Address from Address where IDAddress={id}"; 
+
+                var cmd = new NpgsqlCommand(query, db.DBConnection());
+
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                List<Address> AddressList = new List<Address>();
+
+                while (reader.Read())
+                {
+                    AddressList.Add(new Address
+                    {
+                        IDAddress = Int32.Parse(reader.GetValue(0).ToString()),
+                        Addresses = reader.GetValue(1).ToString()
+                    });
+                }
+
+                ViewBag.Address = AddressList;
+
+                db.DBConnection().Close();
+
+                foreach (var i in AddressList)
+                    Console.Write(i.CustomerID);
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Update Error " + e);
+            }
+            return View();
+
+        }
+
+        [HttpPost]
+        public IActionResult Update(Address address, int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                try
+                {
+                    string query = $"UPDATE Address SET Address ='{address.Addresses}' WHERE IDAddress = {id} ";
+                    var cmd = new NpgsqlCommand(query, db.DBConnection());
+
+                    Console.WriteLine("Updated");
+                    cmd.ExecuteNonQuery();
+                    db.DBConnection().Close();
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Create Error" + e);
+                }
+            }
+            else
+            {
+                Console.WriteLine("State not Valid");
+                return RedirectToAction("Create");
+
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -21,4 +21,9 @@
     <Folder Include="DBConnection\" />
     <Folder Include="Views\Address\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="wwwroot\js\site.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

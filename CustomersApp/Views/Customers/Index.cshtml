@@ -7,53 +7,55 @@
 }
 
 <div class="container">
+    <br />
     <div class="row">
         <div class="col-sm-6">
-            <h3>Customers List</h3>
+            <h1>Customers </h1>
         </div>
         <div class="col-sm-6">
-            <a class="btn btn-success d-block" asp-action="Create" asp-controller="Customers"> Create New</a>
+            <a class="btn btn-success d-block" asp-action="Create" asp-controller="Customers"> Create New</a><br />
         </div>
     </div>
 
-   
+
     <div class="row">
-      
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <td>@Html.DisplayNameFor(d => d.CustomerID)</td>
-                        <td>@Html.DisplayNameFor(d => d.Name)</td>
-                        <td>@Html.DisplayNameFor(d => d.LastName)</td>
-                        <td>@Html.DisplayNameFor(d => d.DocumentID)</td>
-                        <td>@Html.DisplayNameFor(d => d.Email)</td>
-                        <td>@Html.DisplayNameFor(d => d.Phone)</td>
 
-                    </tr>
-                </thead>
-                <tbody>
-                        @{
-                            foreach (var i in (List<Customers>)ViewData["Customers"])
-                            {
-                               <tr>
-                                    <td>@i.CustomerID</td>
-                                    <td>@i.Name</td>
-                                    <td>@i.LastName</td>
-                                    <td>@i.DocumentID</td>
-                                    <td>@i.Email</td>
-                                    <td>@i.Phone</td>
-                                    <td>
-                                        <a asp-controller="Customers" asp-action="Update"  asp-route-id="@i.CustomerID" class="btn btn-warning">Edit</a>
-                                        <a asp-controller="Customers" asp-action="Delete" asp-route-id="@i.CustomerID" class="btn btn-danger">Delete</a>
-                                    </td>
-                               </tr>
+        <table id="dataTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>Customer ID</td>
+                    <td>Name</td>
+                    <td>Last Name</td>
+                    <td>Document ID</td>
+                    <td>Email</td>
+                    <td>Phone</td>
 
-                            }
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var i in (List<Customers>)ViewData["Customers"])
+                    {
+                        <tr>
+                            <td>@i.CustomerID</td>
+                            <td>@i.Name</td>
+                            <td>@i.LastName</td>
+                            <td>@i.DocumentID</td>
+                            <td>@i.Email</td>
+                            <td>@i.Phone</td>
+                            <td>
+                                <a asp-controller="Customers" asp-action="Update" asp-route-id="@i.CustomerID" class="btn btn-warning">Edit</a>
+                                <a asp-controller="Customers" asp-action="Delete" asp-route-id="@i.CustomerID" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
 
-                        }
-                    
-                </tbody>
-            </table>
-            
-        </div>
+                    }
+
+                }
+
+            </tbody>
+        </table>
+
+    </div>
 </div>
+<script src="~/js/site.js"></script>
