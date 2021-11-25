@@ -23,9 +23,17 @@
     <div class="formContainer">
         <form asp-controller="Address" asp-action="Create">
 
-            <label asp-for="CustomerID">Customer ID</label>
-            <input asp-for="CustomerID" placeholder="Customer ID..">
-            @Html.ValidationMessageFor(d => d.CustomerID, "", new { @class = "text-danger" }) <br />
+            <div>
+                <label for="country">Country</label>
+                <select asp-for="CustomerID">
+                    @{
+                        foreach (var i in (List<Address>)ViewData["CustomerID"])
+                        {
+                            <option type="number" value="@i.CustomerID"> @i.CustomerID </option>
+                        }
+                    }
+                </select>
+            </div> <br />
 
             <label asp-for="Addresses">Address</label>
             <textarea asp-for="Addresses" placeholder="Address" style="height:200px"></textarea>

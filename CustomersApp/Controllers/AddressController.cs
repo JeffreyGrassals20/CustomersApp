@@ -59,6 +59,23 @@ namespace CustomersApp.Controllers
         public IActionResult Create()
         {
 
+            string selectQuery = $"Select IDCustomers from Customers";
+
+            var cmdSelect = new NpgsqlCommand(selectQuery, db.DBConnection());
+
+            NpgsqlDataReader reader = cmdSelect.ExecuteReader();
+
+            List<Address> CustomerIDList = new List<Address>();
+
+            while (reader.Read())
+            {
+                CustomerIDList.Add(new Address
+                {
+                    CustomerID = Int32.Parse(reader.GetValue(0).ToString())
+                });
+            }
+
+            ViewBag.CustomerID = CustomerIDList;
 
             return View();
         }
@@ -76,6 +93,7 @@ namespace CustomersApp.Controllers
                    
                     Console.WriteLine("Added");
                     cmd.ExecuteNonQuery();
+
                     db.DBConnection().Close();
 
                 }
@@ -110,7 +128,7 @@ namespace CustomersApp.Controllers
                 Console.WriteLine("Delete Error " + e);
             }
 
-            Console.WriteLine("Delete State not Valid");
+         
             return RedirectToAction("Index");
 
         }
@@ -170,8 +188,7 @@ namespace CustomersApp.Controllers
         [HttpPost]
         public IActionResult Update(Address address, int id)
         {
-            if (!ModelState.IsValid)
-            {
+           
                 try
                 {
                     string query = $"UPDATE Address SET Address ='{address.Addresses}' WHERE IDAddress = {id} ";
@@ -186,13 +203,7 @@ namespace CustomersApp.Controllers
                 {
                     Console.WriteLine("Create Error" + e);
                 }
-            }
-            else
-            {
-                Console.WriteLine("State not Valid");
-                return RedirectToAction("Create");
-
-            }
+           
             return RedirectToAction("Index");
         }
     }

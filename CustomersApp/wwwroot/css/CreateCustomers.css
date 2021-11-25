@@ -15,6 +15,14 @@ input[type=number] {
     margin-right: 75%;
 }
 
+#IDSelect {
+    width: 25%;
+    
+}
+
+.select{
+    width: 25%;
+}
 
 /* Style the submit button with a specific background color etc */
 input[type=submit] {
