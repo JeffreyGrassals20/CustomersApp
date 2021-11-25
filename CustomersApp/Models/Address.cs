@@ -9,6 +9,12 @@ namespace CustomersApp.Models
         {
         }
 
+        public int IDAddress { get; set; }
+
+        public string CustomerName { get; set; }
+
+        public string CustomerLastName { get; set; }
+
         [Required (ErrorMessage ="Customer ID Is Required")]
         public int CustomerID { get; set; }
 

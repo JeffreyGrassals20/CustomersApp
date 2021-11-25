@@ -3,3 +3,54 @@
 *@
 @{
 }
+@model Address
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Addresses List</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block" asp-action="Create" asp-controller="Address"> Create New Address</a>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <td>@Html.DisplayNameFor(d => d.CustomerID)</td>
+                    <td>@Html.DisplayNameFor(d => d.CustomerName)</td>
+                    <td>@Html.DisplayNameFor(d => d.CustomerLastName)</td>
+                    <td>@Html.DisplayNameFor(d => d.IDAddress)</td>
+                    <td>@Html.DisplayNameFor(d => d.Addresses)</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var i in (List<Address>)ViewData["Address"])
+                    {
+                        <tr>
+                            <td>@i.CustomerID</td>
+                            <td>@i.CustomerName</td>
+                            <td>@i.CustomerLastName</td>
+                            <td>@i.IDAddress</td>
+                            <td>@i.Addresses</td>
+                           
+                            <td>
+                                <a asp-controller="Address" asp-action="Update" asp-route-id="@i.IDAddress" class="btn btn-warning">Edit</a>
+                                <a asp-controller="Address" asp-action="Delete" asp-route-id="@i.IDAddress" class="btn btn-danger">Delete</a>
+
+                            </td>
+                        </tr>
+
+                    }
+
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

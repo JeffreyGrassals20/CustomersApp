@@ -81,22 +81,12 @@ namespace CustomersApp.Controllers
             {
                 try
                 {
-                    /*string query = $"INSERT INTO customers (name," +
-                                                            $"lastname," +
-                                                            $"documentid," +
-                                                            $"email,phone) " +
-                                                            $"VALUES ({customer.Name}," +
-                                                                     $"{customer.LastName}," +
-                                                                     $"{customer.DocumentID}," +
-                                                                     $"{customer.Email}," +
-                                                                     $"{customer.Phone})";*/
 
                     string query = $"CALL InsertCustomers_And_MainAddress('{customer.Name}','{customer.LastName}'," +
                                                                             $"'{customer.DocumentID}'," +
                                                                             $"'{customer.Email}'," +
                                                                             $"'{customer.Phone}'," +
                                                                             $"'{customer.MainAddress}')";
-
                     var cmd = new NpgsqlCommand(query, db.DBConnection());
 
                   
